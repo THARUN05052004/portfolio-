@@ -162,6 +162,17 @@
     border:1px solid var(--line-strong);border-radius:6px;padding:4px 9px;
   }
 
+
+  /* UX CASE STUDY */
+  .case-intro{color:var(--text-mid);font-size:15px;max-width:680px;margin-top:-24px;margin-bottom:30px;}
+  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .case-card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .2s,border-color .2s;}
+  .case-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .case-card h3{font-size:16px;margin-bottom:8px;color:var(--accent);}
+  .case-card p{font-size:14px;color:var(--text-mid);}
+  .case-process{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:18px 22px;color:var(--text-mid);font-size:13px;}
+  .case-process strong{color:var(--text);}
+
   /* SKILLS */
   .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   .skill-group{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:24px;}
@@ -227,6 +238,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#case-study">UX Case Study</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -359,6 +371,34 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <section id="case-study">
+    <div class="wrap">
+      <span class="eyebrow reveal">04 / UX Case Study</span>
+      <h2 class="section-title reveal">Making everyday task management simpler.</h2>
+      <p class="case-intro reveal">A beginner-level UX overview of my Full-stack Task Manager project. These are design considerations for the project, not results from formal user research or usability testing.</p>
+      <div class="case-grid">
+        <article class="case-card reveal">
+          <h3>The problem</h3>
+          <p>People can lose track of daily tasks when their work is spread across notes, messages and different tools.</p>
+        </article>
+        <article class="case-card reveal">
+          <h3>User pain points</h3>
+          <p>It can be difficult to see what is pending, remember priorities and understand what has already been completed.</p>
+        </article>
+        <article class="case-card reveal">
+          <h3>User needs</h3>
+          <p>A simple place to add tasks, organise work and quickly check the status of each task.</p>
+        </article>
+        <article class="case-card reveal">
+          <h3>My solution</h3>
+          <p>A straightforward task manager concept with clear task lists, status labels and an easy way to create and update tasks.</p>
+        </article>
+      </div>
+      <div class="case-process reveal"><strong>My design process:</strong> Understand the problem → Plan the layout → Design the interface → Review and improve</div>
     </div>
   </section>
 
