@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vootla Tharun Sri Krishna — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0c;
+    --bg-card:#161616;
+    --bg-card-hover:#1c1c1c;
+    --line:rgba(255,255,255,0.09);
+    --line-strong:rgba(255,255,255,0.18);
+    --accent:#c6ff3d;
+    --accent-dim:rgba(198,255,61,0.12);
+    --text:#f4f4ef;
+    --text-mid:#b7b7ae;
+    --text-dim:#7a7a72;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.headline{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--accent);color:#0c0c0c;}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(12,12,12,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;max-width:1180px;margin:0 auto;}
+  .logo{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;
+    color:var(--accent);letter-spacing:1px;
+    border:1.5px solid var(--accent);
+    width:42px;height:42px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{
+    font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--text-mid);transition:color .2s;
+    position:relative;padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);
+    transition:width .25s;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-links a.active::after{width:100%;}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+  .nav-toggle span{width:22px;height:2px;background:var(--text);display:block;}
+
+  /* HERO */
+  .hero{padding:170px 0 100px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:start;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:7px 16px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:28px;
+  }
+  .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+  .hero h1{
+    font-size:66px;font-weight:700;line-height:1.02;letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  .hero h1 .accent-line{color:var(--accent);display:block;}
+  .hero p.lede{
+    font-size:17px;color:var(--text-mid);max-width:520px;margin-bottom:36px;
+  }
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:8px;font-size:14px;font-weight:600;
+    cursor:pointer;border:1px solid transparent;transition:transform .15s,background .2s,border-color .2s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent);color:#0c0c0c;}
+  .btn-primary:hover{background:#d6ff6b;}
+  .btn-ghost{border-color:var(--line-strong);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  .stat-grid{display:flex;flex-direction:column;gap:16px;}
+  .stat-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;display:flex;align-items:center;gap:18px;
+    transition:border-color .2s,transform .2s;
+  }
+  .stat-card:hover{border-color:var(--line-strong);transform:translateY(-2px);}
+  .stat-icon{
+    width:44px;height:44px;border-radius:10px;background:#0f0f0f;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .stat-icon svg{width:20px;height:20px;stroke:var(--accent);}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1;margin-bottom:5px;}
+  .stat-label{font-size:12.5px;color:var(--text-dim);}
+
+  /* SECTION SHARED */
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;display:block;
+  }
+  .section-title{font-size:34px;font-weight:700;margin-bottom:44px;max-width:560px;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;}
+  .about-grid p{color:var(--text-mid);font-size:16px;margin-bottom:18px;max-width:540px;}
+  .about-side{border-left:1px solid var(--line);padding-left:32px;}
+  .edu-item{margin-bottom:24px;}
+  .edu-item h4{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .edu-item p{font-size:13px;color:var(--text-dim);margin:0;}
+  .edu-item .edu-score{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:13px;}
+
+  /* EXPERIENCE */
+  .exp-item{
+    display:grid;grid-template-columns:160px 1fr;gap:32px;padding:32px 0;
+    border-top:1px solid var(--line);
+  }
+  .exp-item:first-of-type{border-top:none;}
+  .exp-date{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-dim);padding-top:2px;}
+  .exp-role{font-size:19px;font-weight:600;margin-bottom:4px;}
+  .exp-org{color:var(--accent);font-size:14px;margin-bottom:12px;font-weight:500;}
+  .exp-desc{color:var(--text-mid);font-size:15px;max-width:640px;}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:16px;
+    padding:28px;display:flex;flex-direction:column;height:100%;
+    transition:transform .25s,border-color .25s,background .25s;
+  }
+  .proj-card:hover{transform:translateY(-6px);border-color:var(--accent);background:var(--bg-card-hover);}
+  .proj-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);
+    letter-spacing:0.06em;margin-bottom:16px;
+  }
+  .proj-card h3{font-size:19px;font-weight:600;margin-bottom:12px;line-height:1.3;}
+  .proj-card ul{list-style:none;color:var(--text-mid);font-size:13.5px;flex-grow:1;}
+  .proj-card li{position:relative;padding-left:16px;margin-bottom:10px;}
+  .proj-card li::before{content:'—';position:absolute;left:0;color:var(--text-dim);}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mid);
+    border:1px solid var(--line-strong);border-radius:6px;padding:4px 9px;
+  }
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .skill-group{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .skill-group h4{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
+  .skill-group .chip{display:inline-block;margin:0 6px 8px 0;color:var(--text-mid);}
+
+  /* CERTS */
+  .cert-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cert-card{
+    border:1px solid var(--line);border-radius:14px;padding:22px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .cert-icon{width:38px;height:38px;flex-shrink:0;border-radius:8px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;}
+  .cert-icon svg{width:18px;height:18px;stroke:var(--accent);}
+  .cert-card h4{font-size:14.5px;font-weight:600;margin-bottom:4px;}
+  .cert-card p{font-size:12.5px;color:var(--text-dim);}
+
+  /* CONTACT */
+  .contact-box{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:22px;
+    padding:64px;text-align:center;
+  }
+  .contact-box h2{font-size:38px;margin-bottom:14px;}
+  .contact-box p{color:var(--text-mid);font-size:16px;margin-bottom:32px;}
+  .contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .contact-links a{
+    border:1px solid var(--line-strong);border-radius:10px;padding:12px 22px;font-size:14px;
+    display:flex;align-items:center;gap:8px;transition:border-color .2s,color .2s;
+  }
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent);}
+
+  footer{padding:36px 0;text-align:center;color:var(--text-dim);font-size:13px;border-top:1px solid var(--line);}
+
+  @media(max-width:920px){
+    .hero-grid,.about-grid{grid-template-columns:1fr;}
+    .proj-grid,.skills-grid,.cert-row{grid-template-columns:1fr 1fr;}
+    .nav-links{
+      position:fixed;top:81px;left:0;right:0;background:var(--bg);
+      flex-direction:column;padding:24px 40px;gap:22px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-140%);transition:transform .3s;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-toggle{display:flex;}
+    .hero h1{font-size:44px;}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 22px;}
+    nav{padding:18px 22px;}
+    .proj-grid,.skills-grid,.cert-row{grid-template-columns:1fr;}
+    .exp-item{grid-template-columns:1fr;gap:8px;}
+    .contact-box{padding:40px 24px;}
+    .contact-box h2{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">TS</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap" style="border-top:none;">
+    <div class="hero-grid">
+      <div>
+        <div class="badge">Open to 2026 roles</div>
+        <h1>Vootla Tharun<span class="accent-line">Sri Krishna</span></h1>
+        <p class="lede">Computer Science graduate (2026) building AI-powered and full-stack applications — from object detection models to production web apps. Comfortable across the stack, from Python and Java to React and cloud deployment.</p>
+        <div class="btn-row">
+          <a href="#projects" class="btn btn-primary">View projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><div class="stat-num">7.54</div><div class="stat-label">CGPA — GIET, CSE</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+          <div><div class="stat-num">2</div><div class="stat-label">Internships completed</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div><div class="stat-num">3</div><div class="stat-label">Projects shipped</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v5c0 5 4 8 9 10 5-2 9-5 9-10V7l-9-5Z"/></svg></div>
+          <div><div class="stat-num">AWS</div><div class="stat-label">Certified Cloud Practitioner</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <span class="eyebrow">01 / About</span>
+        <h2 class="section-title">Grounded in fundamentals, built for shipping real things.</h2>
+        <p>Computer Science graduate with a strong foundation in data structures, algorithms, and object-oriented programming. Skilled in Python, Java, and full-stack web development, with hands-on experience building AI-powered and scalable applications through academic and personal projects.</p>
+        <p>Quick learner, comfortable in Agile environments, and eager to contribute to real-world engineering challenges — from training computer vision models to shipping production web apps end to end.</p>
+      </div>
+      <div class="about-side reveal">
+        <div class="edu-item">
+          <h4>B.Tech, Computer Science &amp; Engineering</h4>
+          <p>Godavari Institute of Engineering and Technology (A)</p>
+          <p class="edu-score">CGPA 7.54 · 2022 – 2026</p>
+        </div>
+        <div class="edu-item">
+          <h4>Higher Secondary School (MPC)</h4>
+          <p>Sri Chaitanya High School</p>
+          <p class="edu-score">71% · 2020 – 2022</p>
+        </div>
+        <div class="edu-item">
+          <h4>High School (SSC)</h4>
+          <p>Dr. K.K.R. Gowtham High School</p>
+          <p class="edu-score">97% · 2019 – 2020</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <span class="eyebrow reveal">02 / Experience</span>
+      <h2 class="section-title reveal">Internships</h2>
+      <div class="exp-item reveal">
+        <div class="exp-date">07/2024 – 04/2025</div>
+        <div>
+          <div class="exp-role">Java Full Stack Intern</div>
+          <div class="exp-org">Techwing</div>
+          <p class="exp-desc">Completed a full-stack training program covering HTML, CSS, and JavaScript on the frontend, and Core Java, Spring Boot, and SQL on the backend — with hands-on projects and placement preparation.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">05/2024 – 06/2024<br>Virtual</div>
+        <div>
+          <div class="exp-role">AI / ML Intern</div>
+          <div class="exp-org">AIMER Society</div>
+          <p class="exp-desc">Contributed to ML/DL/NLP projects including YOLO-based object detection and Telegram bot automation, and built Power BI dashboards for data visualization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <span class="eyebrow reveal">03 / Projects</span>
+      <h2 class="section-title reveal">Selected work</h2>
+      <div class="proj-grid">
+        <div class="proj-card reveal">
+          <div class="proj-tag">computer vision</div>
+          <h3>Object detection for plant classification</h3>
+          <ul>
+            <li>Built with YOLOv5 and OpenCV to identify plant species at over 85% accuracy</li>
+            <li>Deployed on AWS Lambda with a responsive front-end for real-time detection</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="chip">YOLOv5</span><span class="chip">OpenCV</span><span class="chip">AWS Lambda</span>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-tag">automation</div>
+          <h3>Telegram chatbot with Python &amp; Flask</h3>
+          <ul>
+            <li>Modular bot automating academic FAQs and user onboarding via Telegram Bot API</li>
+            <li>Hosted on AWS EC2 with persistent storage on MongoDB Atlas</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">EC2</span><span class="chip">MongoDB</span>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-tag">full-stack</div>
+          <h3>Full-stack task manager</h3>
+          <ul>
+            <li>React.js frontend with a Node.js / Express backend</li>
+            <li>JWT authentication and MongoDB, tested to serve 100+ concurrent users</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">JWT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <span class="eyebrow reveal">04 / Skills</span>
+      <h2 class="section-title reveal">Technical skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h4>Languages</h4>
+          <span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">C++</span><span class="chip">HTML</span><span class="chip">CSS</span>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Databases</h4>
+          <span class="chip">MySQL</span><span class="chip">MongoDB</span>
+        </div>
+        <div class="skill-group reveal">
+          <h4>CS fundamentals</h4>
+          <span class="chip">Data Structures</span><span class="chip">Algorithms</span><span class="chip">Networking</span><span class="chip">DBMS</span>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Cloud &amp; tools</h4>
+          <span class="chip">AWS EC2</span><span class="chip">AWS Lambda</span><span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <span class="eyebrow reveal">05 / Certifications</span>
+      <h2 class="section-title reveal">Certifications</h2>
+      <div class="cert-row">
+        <div class="cert-card reveal">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v5c0 5 4 8 9 10 5-2 9-5 9-10V7l-9-5Z"/></svg></div>
+          <div><h4>AWS Certified Cloud Practitioner</h4><p>Amazon Web Services</p></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><h4>Artificial Intelligence Applications</h4><p>AIMER Society</p></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <div><h4>Java</h4><p>Certiportal</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <h2>Let's build something.</h2>
+        <p>Open to Graduate Engineer Trainee and Associate Software Developer roles — reach out directly.</p>
+        <div class="contact-links">
+          <a href="mailto:tharunsrikrishna05@gmail.com">Email</a>
+          <a href="tel:+919121077055">+91 91210 77055</a>
+          <a href="https://linkedin.com/in/tharunsrikrishna-2004tsk" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/tharunsrikrishna" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Vootla Tharun Sri Krishna — built 2026</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navA = document.querySelectorAll('.nav-links a');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navA.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => navObs.observe(s));
+</script>
+
+</body>
+</html>
